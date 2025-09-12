@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1>So you wan't to View Matt Boubin's Resume?</h1>
+    <form action="{% url 'convert:convert_pdf_to_text' %}" method="get">
+        <button type="submit">Click Here to See the HTML!</button>
+    </form>
+
+    <a href="{% url 'convert:resume_pdf' %}" target="_blank">View Resume PDF</a>
+
+    <!-- <p><a href="{% url 'convert:output' %}">Go to Output page</a></p>
+    <p>{{text}}</p> -->
+
+</body>
+</html>
