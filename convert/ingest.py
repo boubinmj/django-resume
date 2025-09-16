@@ -7,26 +7,30 @@ class PDFIngestor:
         if not file_path.endswith('.pdf'):
             raise ValueError("File is not a PDF")
         
-        titles = ['Github',
-                  'Google Scholar',
-                  'Blog',
-                  'Linkedin',
-                  'Career Goals',
-                  'Skills',
+        titles = ['Experience',
                   'Education',
-                  'Professional Experience',
-                  "Patents and Publications"]
+                  'Publications']
         
         with open(file_path, 'rb') as file:
             reader = pdf2.PdfReader(file)
             texts = []
             for page in reader.pages:
-                txt = page.extract_text()
+                txt = page.extract_text().strip('\n')
+                txt = txt.replace('\n', ' ')
                 if any(title in txt for title in titles):
                     txt += '\n\n'
                 texts.append(txt)
+        
+        pattern = r"(" + "|".join(map(re.escape,titles)) + r")"
+        print(pattern)
+        try:
+            lst = re.split(pattern, texts[0])
+        except Exception as e:
+            print(f"Error during regex split: {e}")
 
-        print(texts)
-        print(type("\n".join(filter(None, texts))))
+        for el in lst:
+            print(el)
+            print("-----")
+        #print(type("".join(filter(None, texts))))
         
         return "".join(filter(None, texts))
