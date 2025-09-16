@@ -19,11 +19,15 @@ def convert_pdf_to_text(request):
         try:
             raw_text = PDFIngestor.parse('convert/media/ResumeSept2025.pdf')
             template = loader.get_template('convert/show.html')
+            
+            bullets = raw_text['Experience'].split("●")
+            raw_text['Experience'] = bullets
             text = raw_text
-            #bullets = re.split(r"[•\-\*]\s+", raw_text)
-            #print(bullets)
+
+            print(len(bullets))
             return render(request, "convert/show.html", {"text": text})
         except Exception as e:
+            print(e)
             return render(request, "convert/show.html", {"error": f"{type(e).__name__}: {e}"}, status=400)
         
 def resume_pdf(request):

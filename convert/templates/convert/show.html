@@ -12,7 +12,16 @@
             <h2>{{ key }}</h2>
         {% endif %}
         {% if key == 'Experience' %}
-            <p><em>{{ value|linebreaksbr }}</em></p>
+            {% for bull in text.Experience %}
+                {% if 'Engineer' in bull or 'eveloper' in bull %}
+                    </ul>
+                    <h3>{{bull}}</h3>
+                    <ul>
+                {% else %}
+                    <li>{{bull}}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
         {% else %}
             <p>{{ value }}</p>
         {% endif %}
