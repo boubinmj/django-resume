@@ -4,6 +4,7 @@ from .ingest import PDFIngestor
 from django.shortcuts import render
 from django.http import FileResponse
 from pathlib import Path
+import re 
 
 def index(request):
     template = loader.get_template('output.html')
@@ -16,8 +17,11 @@ def output(request):
 def convert_pdf_to_text(request):
     if request.method == 'GET':
         try:
-            text = PDFIngestor.parse('convert/media/ResumeSept2025.pdf')
+            raw_text = PDFIngestor.parse('convert/media/ResumeSept2025.pdf')
             template = loader.get_template('convert/show.html')
+            text = raw_text
+            #bullets = re.split(r"[•\-\*]\s+", raw_text)
+            #print(bullets)
             return render(request, "convert/show.html", {"text": text})
         except Exception as e:
             return render(request, "convert/show.html", {"error": f"{type(e).__name__}: {e}"}, status=400)
