@@ -28,9 +28,15 @@ class PDFIngestor:
         except Exception as e:
             print(f"Error during regex split: {e}")
 
-        for el in lst:
-            print(el)
-            print("-----")
+        resume = {}
+        resume['header'] = lst[0]
+        for i in range(1, len(lst), 2):
+            if i+1 < len(lst):
+                resume[lst[i]] = lst[i+1]
+        print(resume)
+        # for el in lst:
+        #     print(el)
+        #     print("-----")
         #print(type("".join(filter(None, texts))))
         
-        return "".join(filter(None, texts))
+        return resume

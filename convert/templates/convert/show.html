@@ -3,10 +3,24 @@
 <body>
 
     <h1>Resume</h1>
-    <h3>Matt Boubin - mjb9353</h3>
+    <h2>Matt Boubin - mjb9353</h2>
 
+    {% for key, value in text.items %}
+        {% if key == 'header' %}
+            <h1>Software Engineer</h1>
+        {% else %}
+            <h2>{{ key }}</h2>
+        {% endif %}
+        {% if key == 'Experience' %}
+            <p><em>{{ value|linebreaksbr }}</em></p>
+        {% else %}
+            <p>{{ value }}</p>
+        {% endif %}
+    {% endfor %}
+
+    <br>
+    <br>
     <p><a href="{% url 'convert:output' %}">Go Back</a></p>
-    <p>{{text}}</p>
 
 </body>
 </html>
