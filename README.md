@@ -34,9 +34,12 @@ After cloning the repository, the user can take the following steps to setup the
    http://127.0.0.1:8000/
    ```
 ## Usage
-User will enter the app at the home page.  
+The user will be sent initially to the HTML copy of the resume.
+
+![App Screenshot](docs/html-resume.png)
+
+If the user selects the *go back* hyperlink, they will enter the app at the home page where they will have the following options:
 1. If the *Click Here to see the HTML!* button is selected, user will be sent to HTML page
 2. If the *View Resume PDF* hyperlink is selected, the original PDF will display in Browser
 
 ![App Screenshot](docs/home.png)
-
